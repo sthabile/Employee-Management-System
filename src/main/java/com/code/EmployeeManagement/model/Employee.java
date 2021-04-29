@@ -1,11 +1,27 @@
-package com.code.EmployeeManagement.models;
+package com.code.EmployeeManagement.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "employees")
 public class Employee {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    @Column(name = "firstname")
     private String name;
+
+    @Column(name = "surname")
     private String surname;
-    private int age;
-    private long id;
+
+    private Integer age;
     private String jobTitle;
 
     public Employee() {
@@ -32,19 +48,19 @@ public class Employee {
         this.surname = surname;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -55,7 +71,5 @@ public class Employee {
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
     }
-
-    
     
 }

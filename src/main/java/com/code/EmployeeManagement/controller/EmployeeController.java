@@ -1,10 +1,13 @@
-package com.code.EmployeeManagement.controllers;
+package com.code.EmployeeManagement.controller;
 
-import com.code.EmployeeManagement.models.Employee;
+import com.code.EmployeeManagement.model.Employee;
+import com.code.EmployeeManagement.service.EmployeeService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +18,19 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Controller
 public class EmployeeController {
+
+    @Autowired(required=true)
+    private EmployeeService employeeServiceImpl;
+
+    //display list of employees
+    @GetMapping("/employee")
+    public ModelAndView displayEmployees(Model model){
+        ModelAndView mv = new ModelAndView("index");
+        model.addAttribute("listEmployees", employeeServiceImpl.getAllEmployees());
+        mv.addObject("employeeList", model);
+        return mv;
+    }
+
     //Initialise the object
     @ModelAttribute (value = "employee")
     public Employee newEmployee(){
@@ -63,13 +79,6 @@ public class EmployeeController {
         //Look up the employee from the database
         //If present, delete
         //update the index page
-        return mv; 
-    }
-
-    @RequestMapping(value = "/employee")
-    public ModelAndView employeeDisplayer (){
-        ModelAndView mv = new ModelAndView("employee");
-        //display employees
         return mv; 
     }
     
