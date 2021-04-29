@@ -25,7 +25,7 @@ public class EmployeeController {
     //display list of employees
     @GetMapping("/employee")
     public ModelAndView displayEmployees(Model model){
-        ModelAndView mv = new ModelAndView("index");
+        ModelAndView mv = new ModelAndView("employee");
         model.addAttribute("listEmployees", employeeServiceImpl.getAllEmployees());
         mv.addObject("employeeList", model);
         return mv;
