@@ -1,6 +1,7 @@
 package com.code.EmployeeManagement.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.code.EmployeeManagement.Repository.EmployeeRepos;
 import com.code.EmployeeManagement.model.Employee;
@@ -23,5 +24,19 @@ public class EmployeeServiceImp implements EmployeeService{
     @Override
     public void saveEmployee(Employee employee) {
         this.employeeRespository.save(employee);
+    }
+
+    @Override
+    public Employee getEmployeeById(long id) {
+        Optional<Employee> optional = employeeRespository.findById(id);
+        Employee employee = null;
+        if(optional.isPresent())
+        {
+            employee = optional.get();
+        }
+        else{
+            throw new RuntimeException("Employee not found for id : " + id);
+        }
+        return employee;
     }
 }

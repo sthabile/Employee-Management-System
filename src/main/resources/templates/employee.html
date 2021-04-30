@@ -19,8 +19,8 @@
                       <td id=td th:text="${employee.name} "></td>
                       <td id=td th:text="${employee.jobTitle}"></td>
                       <td id=td >
-                          <a href="edit">edit</a>
-                          <a href="delete">delete</a>
+                          <a th:href="@{/edit/{id}(id=${employee.id})}">Update</a>
+                          <a href="delete">Delete</a>
                       </td>
                     </tr>
                     <tr id=tr>

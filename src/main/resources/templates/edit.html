@@ -1,4 +1,27 @@
 <!DOCTYPE html>
-<html>
-    <a href="employee.">Save changes</a>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        
+    </head>
+    <body>
+        <div>
+            <h1>
+                Add New Employee
+            </h1>
+        </div>
+        <div>
+            <form th:action= "@{/addEmployee}" th:object="${employee}" method="POST">
+                
+                <input type="hidden" name= "id" th:field= "*{id}" placeholder="name"> <br>
+
+                <label for= "name" >First Name </label>
+                <input type="text" name= "name" th:field= "*{name}" placeholder="name"> <br>
+                <label for= "surname" >Last Name </label>
+                <input type="text" name= "surname" th:field= "*{surname}" placeholder= "surname"> <br>
+                <label for= "jobTitle" >Job Title</label>
+                <input type="text" name= "jobTitle" th:field= "*{jobTitle}" placeholder= "job title"> <br>
+                <button type="submit" name="submit" value= 0>Save Changes</button>
+            </form>
+        </div>      
+    </body>
 </html>

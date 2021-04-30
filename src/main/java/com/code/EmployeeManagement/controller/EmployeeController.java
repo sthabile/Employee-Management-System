@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,8 +47,7 @@ public class EmployeeController {
         ModelAndView mv = new ModelAndView("redirect:/employee");
         
         employeeServiceImpl.saveEmployee(employee);
-        System.out.println(employee.getName());
-        System.out.println(employee.getSurname());
+
         return mv;
     }
 
@@ -62,12 +62,13 @@ public class EmployeeController {
     
 
     //Editting an employee
-    @RequestMapping(value = "/edit")
-    public ModelAndView edit (){
+    @GetMapping( "/edit/{id}")
+    public ModelAndView edit (@PathVariable(value = "id")Long id , Model model)
+    {
         ModelAndView mv = new ModelAndView("edit");
-        //Look up the employee from the database
-        //If present, edit the data
-        //update the index page
+
+        Employee employee =employeeServiceImpl.getEmployeeById(id);
+        model.addAttribute("employee", employee);
         return mv; 
     }
 
