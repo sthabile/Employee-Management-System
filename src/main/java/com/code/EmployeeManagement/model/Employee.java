@@ -13,7 +13,6 @@ public class Employee {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
     @Column(name = "firstname")         
@@ -22,7 +21,8 @@ public class Employee {
     @Column(name = "surname")
     private String surname;
 
-    private Integer age;
+    // private Integer age;
+    @Column(name = "jobTitle")
     private String jobTitle;
 
     public Employee() {
@@ -49,13 +49,13 @@ public class Employee {
         this.surname = surname;
     }
 
-    public Integer getAge() {
-        return age;
-    }
+    // public Integer getAge() {
+    //     return age;
+    // }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
+    // public void setAge(Integer age) {
+    //     this.age = age;
+    // }
 
     public Long getId() {
         return id;

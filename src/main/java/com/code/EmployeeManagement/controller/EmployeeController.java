@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,35 @@ public class EmployeeController {
     @Autowired(required=true)
     private EmployeeService employeeServiceImpl;
 
+    //index page
+    @GetMapping(value = "/index")
+    public ModelAndView index (){
+        ModelAndView mv = new ModelAndView("index");
+        return mv;  
+    }
+
+    //employeeForm page
+    @GetMapping(value = "/employeeForm")
+    public ModelAndView employeeForm (Model model){
+        ModelAndView mv = new ModelAndView("employeeForm");
+        Employee employee = new Employee();
+        model.addAttribute("employee", employee);
+        return mv;  
+    }
+
+    @PostMapping("/addEmployee")
+    public ModelAndView showEmployeeForm (
+        @ModelAttribute ("employee") Employee employee)
+    {
+        ModelAndView mv = new ModelAndView("redirect:/employee");
+        
+        employeeServiceImpl.saveEmployee(employee);
+        System.out.println(employee.getName());
+        System.out.println(employee.getSurname());
+        return mv;
+    }
+
+
     //display list of employees
     @GetMapping("/employee")
     public ModelAndView displayEmployees(Model model){
@@ -29,39 +59,7 @@ public class EmployeeController {
         model.addAttribute("listEmployees", employeeServiceImpl.getAllEmployees());
         return mv;
     }
-
-    //Initialise the object
-    @ModelAttribute (value = "employee")
-    public Employee newEmployee(){
-        return new Employee();
-    }
-
-    //index page
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public ModelAndView index (){
-        ModelAndView mv = new ModelAndView("index");
-        return mv;  
-    }
-
-    //Adding an employee
-    @RequestMapping(value = "/add",method = RequestMethod.GET)
-    public ModelAndView add (
-        @ModelAttribute(value = "employee") Employee employee,
-        @RequestParam(required = false) String name, 
-        @RequestParam(required = false) String surname,
-        @RequestParam(required = false) Long id,
-        Model model
-    ){
-        ModelAndView mv = new ModelAndView("add");
-        //Create an employee.
-        //first check if parameters are null
-        //Add employee to database
-        //update the index page
-
-        employee = new Employee(name, surname);
-        model.addAttribute("employee", employee);
-        return mv; 
-    }
+    
 
     //Editting an employee
     @RequestMapping(value = "/edit")
@@ -87,7 +85,7 @@ public class EmployeeController {
     public ViewResolver getViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setPrefix("templates/");
-        //resolver.setSuffix(".html");
+        resolver.setSuffix(".html");
         return resolver;
     }
     

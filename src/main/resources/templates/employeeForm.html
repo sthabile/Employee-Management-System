@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        
+    </head>
+    <body>
+        <div>
+            <h1>
+                Fill in the details
+            </h1>
+        </div>
+        <div>
+            <form th:action= "@{/addEmployee}" th:object="${employee}" method="POST">
+                <label for= "name" >First Name </label>
+                <input type="text" name= "name" th:field= "*{name}" placeholder="name"> <br>
+                <label for= "surname" >Last Name </label>
+                <input type="text" name= "surname" th:field= "*{surname}" placeholder= "surname"> <br>
+                <label for= "jobTitle" >Job Title</label>
+                <input type="text" name= "jobTitle" th:field= "*{jobTitle}" placeholder= "job title"> <br>
+                <button type="submit" name="submit" value= 0>Add Employee</button>
+            </form>
+        </div>      
+    </body>
+</html>

@@ -6,5 +6,8 @@ import com.code.EmployeeManagement.model.Employee;
 
 
 public interface  EmployeeService {
+    
     List<Employee> getAllEmployees();
+
+    void saveEmployee(Employee employee);
 }

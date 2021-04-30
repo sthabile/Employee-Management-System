@@ -10,14 +10,14 @@
                 <thead>
                     <tr id= tr>
                         <th id=th >Employee Name </th>
-                        <th id=th >ID No.</th>
+                        <th id=th >Position</th>
                         <th id=th >Manage</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr id=tr th:each="employee :${listEmployees}" >
-                      <td id=td th:text="${employee.name}"></td>
-                      <td id=td th:text="${employee.id}"></td>
+                      <td id=td th:text="${employee.name} "></td>
+                      <td id=td th:text="${employee.jobTitle}"></td>
                       <td id=td >
                           <a href="edit">edit</a>
                           <a href="delete">delete</a>
@@ -26,7 +26,7 @@
                     <tr id=tr>
                         <td id=td ></td>
                         <td id=td ></td>
-                        <td id=td ><a href="/add">add</a></td>
+                        <td id=td ><a href="employeeForm">add</a></td>
                       </tr>
                 </tbody>
               </table>
