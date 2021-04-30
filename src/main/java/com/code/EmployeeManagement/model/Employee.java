@@ -6,16 +6,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+        
 @Entity
 @Table(name = "employees")
 public class Employee {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "firstname")
+    @Column(name = "firstname")         
     private String name;
 
     @Column(name = "surname")

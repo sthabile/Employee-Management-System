@@ -27,7 +27,6 @@ public class EmployeeController {
     public ModelAndView displayEmployees(Model model){
         ModelAndView mv = new ModelAndView("employee");
         model.addAttribute("listEmployees", employeeServiceImpl.getAllEmployees());
-        mv.addObject("employeeList", model);
         return mv;
     }
 
@@ -39,7 +38,7 @@ public class EmployeeController {
 
     //index page
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public ModelAndView index (Model model){
+    public ModelAndView index (){
         ModelAndView mv = new ModelAndView("index");
         return mv;  
     }
@@ -50,7 +49,8 @@ public class EmployeeController {
         @ModelAttribute(value = "employee") Employee employee,
         @RequestParam(required = false) String name, 
         @RequestParam(required = false) String surname,
-        @RequestParam(required = false) Long id
+        @RequestParam(required = false) Long id,
+        Model model
     ){
         ModelAndView mv = new ModelAndView("add");
         //Create an employee.
@@ -59,6 +59,7 @@ public class EmployeeController {
         //update the index page
 
         employee = new Employee(name, surname);
+        model.addAttribute("employee", employee);
         return mv; 
     }
 

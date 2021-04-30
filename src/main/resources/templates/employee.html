@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <h1>Manage your employees</h1>
         <link rel="stylesheet" href="indexStyle.css">
@@ -7,24 +7,28 @@
     <body>  
         <div>
             <table id= "table" >
-                <tr id= tr >
-                  <th id=th >Employee Name </th>
-                  <th id=th >Contact</th>
-                  <th id=th >Manage</th>
-                </tr>
-                <tr id=tr >
-                  <td id=td >stha lushaba</td>
-                  <td id=td >0732879477</td>
-                  <td id=td >
-                      <a href="edit">edit</a>
-                      <a href="delete">delete</a>
-                  </td>
-                </tr>
-                <tr id=tr >
-                    <td id=td ></td>
-                    <td id=td ></td>
-                    <td id=td ><a href="/add">add</a></td>
-                  </tr>
+                <thead>
+                    <tr id= tr>
+                        <th id=th >Employee Name </th>
+                        <th id=th >ID No.</th>
+                        <th id=th >Manage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id=tr th:each="employee :${listEmployees}" >
+                      <td id=td th:text="${employee.name}"></td>
+                      <td id=td th:text="${employee.id}"></td>
+                      <td id=td >
+                          <a href="edit">edit</a>
+                          <a href="delete">delete</a>
+                      </td>
+                    </tr>
+                    <tr id=tr>
+                        <td id=td ></td>
+                        <td id=td ></td>
+                        <td id=td ><a href="/add">add</a></td>
+                      </tr>
+                </tbody>
               </table>
         </div>
     </body>
