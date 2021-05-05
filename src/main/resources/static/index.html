@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <h1>Manage your employees</h1>
+        <center><h1>Employee Management System</h1></center>
         <link rel="stylesheet" href="indexStyle.css">
+        
     </head>
     <body>  
         <div>
-            <table id= "table" >
-                <tr id= tr >
-                  <th id=th >Employee Name </th>
-                  <th id=th >Contact</th>
-                  <th id=th >Manage</th>
+          <center>
+            <table class="employees-content" >
+                <tr >
+                  <th>Employee Name </th>
+                  <th>Position</th>
+                  <th>Action</th>
                 </tr>
-                <tr id=tr >
-                  <td id=td ></td>
-                  <td id=td ></td>
-                  <td id=td ><a href="/employeeForm">add</a></td>
+                <tr >
+                  <td></td>
+                  <td></td>
+                  <td >
+                    <center>
+                      <a class="button-links" id="add" href="/employeeForm">Add New Employee</a>
+                    </center>
+                  </td>
+                    
                 </tr>
               </table>
+            </center>
         </div>
     </body>
 </html>

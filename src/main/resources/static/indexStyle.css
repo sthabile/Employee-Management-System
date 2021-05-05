@@ -1,15 +1,48 @@
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-td, th {
-    border: 1px solid black;
-    text-align: left;
-    padding: 8px;
-  }
-  
-tr:nth-child(even) {
-    background-color: #dddddd;
-  }
+.employees-content  {
+  margin-top: 2%;
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+}
+
+.employees-content  td, .employees-content  th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.employees-content  tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+.employees-content th {
+  padding-top: 12px;
+  text-align: left;
+  background-color: rgb(13, 13, 14);
+  color: white;
+}
+
+.button-links {
+  color: black;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+}
+
+#update {
+  background-color: #54cf0c;
+}
+
+#delete {
+  background-color: #cf3232;
+}
+
+#add:hover {
+  padding-right: 8px;
+}
+
+/*TODO: Style the buttons better*/
+/* .button-links:hover, a:active {
+  background-color: #06521f;
+} */

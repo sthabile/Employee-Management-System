@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <h1>Manage your employees</h1>
+        <center><h1>Employee Management System</h1></center>
         <link rel="stylesheet" href="indexStyle.css">
     </head>
     <body>  
         <div>
-            <table id= "table" >
-                <thead>
-                    <tr id= tr>
-                        <th id=th >Employee Name </th>
-                        <th id=th >Position</th>
-                        <th id=th >Manage</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr id=tr th:each="employee :${listEmployees}" >
-                      <td id=td th:text="${employee.name} "></td>
-                      <td id=td th:text="${employee.jobTitle}"></td>
-                      <td id=td >
-                          <a th:href="@{/edit/{id}(id=${employee.id})}">Update</a>
-                          <a href="delete">Delete</a>
-                      </td>
-                    </tr>
-                    <tr id=tr>
-                        <td id=td ></td>
-                        <td id=td ></td>
-                        <td id=td ><a href="employeeForm">add</a></td>
-                      </tr>
-                </tbody>
-              </table>
+            <center>
+                <table class="employees-content" >
+                    <thead>
+                        <tr>
+                            <th>Employee Name </th>
+                            <th>Position</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="row" th:each="employee :${listEmployees}" >
+                            <td class="column" th:text="${employee.name + ' ' + employee.surname}"></td>
+                            <td class="column" th:text="${employee.jobTitle}"></td>
+                            <td class="column" >
+                                <a class="button-links" id="update" th:href="@{/edit/{id}(id=${employee.id})}">Update</a>
+                                <a class="button-links" id="delete" href="delete">Delete</a>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td></td>
+                            <td></td>
+                            <td >
+                                <a class="button-links" id="add" href="/employeeForm">Add Employee</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </center>
         </div>
     </body>
 </html>
