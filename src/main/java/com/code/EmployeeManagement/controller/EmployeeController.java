@@ -67,18 +67,18 @@ public class EmployeeController {
     {
         ModelAndView mv = new ModelAndView("edit");
 
-        Employee employee =employeeServiceImpl.getEmployeeById(id);
+        Employee employee =employeeServiceImpl.getEmployee(id);
         model.addAttribute("employee", employee);
         return mv; 
     }
 
     //deleting an employee
-    @RequestMapping(value = "/delete")
-    public ModelAndView delete (){
-        ModelAndView mv = new ModelAndView("delete");
-        //Look up the employee from the database
-        //If present, delete
-        //update the index page
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete (@PathVariable(value = "id")long id, Model model){
+        ModelAndView mv = new ModelAndView("redirect:/employee");
+
+        employeeServiceImpl.deleteEmployee(id);
+
         return mv; 
     }
     
@@ -89,10 +89,5 @@ public class EmployeeController {
         resolver.setSuffix(".html");
         return resolver;
     }
-
-    @GetMapping(value = "/employeeFormStyle.css")
-    public ModelAndView css (){
-        ModelAndView mv = new ModelAndView("employeeForm");
-        return mv;  
-    }  
+ 
 }

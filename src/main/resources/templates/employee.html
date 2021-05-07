@@ -21,7 +21,7 @@
                             <td class="column" th:text="${employee.jobTitle}"></td>
                             <td class="column" >
                                 <a class="button-links" id="update" th:href="@{/edit/{id}(id=${employee.id})}">Update</a>
-                                <a class="button-links" id="delete" href="delete">Delete</a>
+                                <a class="button-links" id="delete" th:href="@{/delete/{id}(id=${employee.id})}">Delete</a>
                             </td>
                         </tr>
                         <tr class="row">

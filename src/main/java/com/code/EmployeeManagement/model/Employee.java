@@ -21,7 +21,6 @@ public class Employee {
     @Column(name = "surname")
     private String surname;
 
-    // private Integer age;
     @Column(name = "jobTitle")
     private String jobTitle;
 
@@ -48,14 +47,6 @@ public class Employee {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-
-    // public Integer getAge() {
-    //     return age;
-    // }
-
-    // public void setAge(Integer age) {
-    //     this.age = age;
-    // }
 
     public Long getId() {
         return id;
