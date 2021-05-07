@@ -88,5 +88,11 @@ public class EmployeeController {
         resolver.setPrefix("templates/");
         resolver.setSuffix(".html");
         return resolver;
+    }
+
+    @GetMapping(value = "/employeeFormStyle.css")
+    public ModelAndView css (){
+        ModelAndView mv = new ModelAndView("employeeForm");
+        return mv;  
     }  
 }

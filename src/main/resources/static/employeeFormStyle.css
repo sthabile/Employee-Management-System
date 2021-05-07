@@ -1,0 +1,12 @@
+form > fieldset > .address-div:after {
+    content: "";
+    display: table;
+    clear: both;;
+}
+  
+form > fieldset > .address-div > .grid-item {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px;
+}

@@ -46,3 +46,35 @@
 /* .button-links:hover, a:active {
   background-color: #06521f;
 } */
+
+form > fieldset > .address-div:after {
+  content: "";
+  display: table;
+  clear: both;;
+}
+
+form > fieldset > .address-div > .grid-item {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px;
+}
+
+form > fieldset > .physical_address {
+  /* display: grid;
+  grid-template-columns: auto auto;
+  background-color: #2196F3;
+  padding: 10px; */
+  display: inline-flex;
+}
+
+form > fieldset > .physical_address > .grid-item {
+  /* background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center; */
+  display: inline-flex;
+}
+
+
