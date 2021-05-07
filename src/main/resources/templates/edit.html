@@ -1,25 +1,159 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        
+        <!-- <link rel="stylesheet" href="Styles.css"> -->
     </head>
+    <style>
+        .employees-content  {
+        margin-top: 2%;
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+        }
+
+        .employees-content  td, .employees-content  th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        }
+
+        .employees-content  tr:nth-child(even){
+        background-color: #f2f2f2;
+        }
+
+        .employees-content th {
+        padding-top: 12px;
+        text-align: left;
+        background-color: rgb(13, 13, 14);
+        color: white;
+        }
+
+        .button-links {
+        color: black;
+        padding: 5px 5px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 8px;
+        }
+
+        #update {
+        background-color: #54cf0c;
+        }
+
+        #delete {
+        background-color: #cf3232;
+        }
+
+        #add:hover {
+        padding-right: 8px;
+        }
+
+        form > fieldset > .address-div:after {
+        content: "";
+        display: table;
+        clear: both;;
+        }
+
+        form > fieldset > .address-div > .grid-item {
+        float: left;
+        width: 50%;
+        padding: 10px;
+        height: 300px;
+        }
+
+        form > fieldset > .physical_address {
+        display: inline-flex;
+        }
+
+        form > fieldset > .physical_address > .grid-item {
+        display: inline-flex;
+        }
+    </style>
     <body>
         <div>
             <center><h1>Update Employee Details</h1></center>
         </div>
         <div>
             <form th:action= "@{/addEmployee}" th:object="${employee}" method="POST">
-                
-                <input type="hidden" name= "id" th:field= "*{id}" placeholder="name"> <br>
+                <input type="hidden" name= "id" th:field= "*{id}" placeholder="name">
+                <fieldset>
+                    <legend>
+                        <h1 class="form-legends">Personal Details</h1>
+                    </legend>
+                    <p>
 
-                <label for= "name" >First Name </label>
-                <input type="text" name= "name" th:field= "*{name}" placeholder="name"> <br>
-                <label for= "surname" >Last Name </label>
-                <input type="text" name= "surname" th:field= "*{surname}" placeholder= "surname"> <br>
-                <label for= "jobTitle" >Job Title</label>
-                <input type="text" name= "jobTitle" th:field= "*{jobTitle}" placeholder= "job title"> <br>
-                <button type="submit" name="submit" value= 0>Save Changes</button>
-            </form>
+                        <label for= "name" >First Name </label>
+                        <input type="text" name= "name" th:field= "*{name}" placeholder="name"> 
+    
+                        <label for= "surname" >Last Name </label>
+                        <input type="text" name= "surname" th:field= "*{surname}" placeholder= "surname">
+    
+                        <label for= "dob" >Date Of Birth</label>
+                        <input type="text" name= "dob">
+    
+                        <label for= "id_number" >ID No.</label>
+                        <input type="text" name= "id_number">
+                    </p>
+                </fieldset>
+                <fieldset>
+                    <legend>
+                        <h1 class="form-legends">Contact Details</h1>
+                    </legend>
+                    <label>Physical Address</label> <br>
+                    <div class="physical_address">
+                        <p class="grid-item">
+                            <div >
+                                <label for= "physical_address-unit" >unit no </label><br><br>
+                                <label for= "physical_address-str-num" >street number </label> <br><br>
+                                <label for= "physical_address-surbub" >surbub</label> <br><br>
+                                <label for= "physical_address-province" >province</label>
+                            </div>
+    
+                            <div>
+                                <input type="text" name= "physical_address-unit"> <br><br>   
+                                <input type="text" name= "physical_address-str-num"> <br><br>    
+                                <input type="text" name= "physical_address-surbub"> <br><br>            
+                                <input type="text" name= "physical_address-str-province">
+                            </div>
+                            
+                        </p>
+                        <P class="grid-item" style="padding-left: 40px;"> 
+                            <div>
+                                <label for= "physical_address-complex" >complex name </label><br><br>
+                                <label for= "physical_address-str_name" >street name </label><br><br>
+                                <label for= "physical_address-city">city</label> </label><br><br>
+                                <label for= "physical_address-postal-code" >postal code</label>
+                            </div>
+                            <div>
+                                <input type="text" name= "physical_address-complex"> <br><br>
+                                <input type="text" name= "physical_address-str-name"> <br><br>
+                                <input type="text" name= "physical_address-city"> <br><br>
+                                <input type="text" name= "physical_address-postal-code"> 
+                            </div>
+                        </P>
+                        </div>
+                </fieldset>
+                <fieldset>
+                    <legend>
+                        <h1 class="form-legends">Employement Details</h1>
+                    </legend>
+                    <p>
+                        <label for= "doe" >Date Of employement</label>
+                        <input type="text" name= "doe">
+                    </p>
+                    <p>
+                      <label for= "jobTitle" >Position </label>
+                      <input type="text" name= "jobTitle" th:field= "*{jobTitle}"> <br>  
+                    </p>
+                    <p>
+                        <p>Click on the "Choose File" button to upload a detailed CV:</p>
+                        <input type="file" id="myFile" name="filename">
+                    </p>
+                </fieldset>
+                <p>
+                    <button type="submit" name="submit" value= 0>Add Employee</button> 
+                </p>
+            </form>     
         </div>      
     </body>
 </html>
