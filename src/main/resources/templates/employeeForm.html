@@ -68,8 +68,21 @@
             </fieldset>
             <fieldset>
                 <legend>
-                    <h1>Employement Details</h1>
+                    <h1 class="form-legends">Employement Details</h1>
                 </legend>
+                <p>
+                    <label for= "doe" >Date Of employement</label>
+                    <input type="text" name= "doe">
+                </p>
+                <p>
+                  <label for= "jobTitle" >Position </label>
+                  <input type="text" name= "jobTitle" th:field= "*{jobTitle}"> <br>  
+                </p>
+                <p>
+                    <p>Click on the "Choose File" button to upload a detailed CV:</p>
+                        <input type="file" id="myFile" name="filename">
+                    </form> 
+                </p>
             </fieldset>
             <p>
                 <button type="submit" name="submit" value= 0>Add Employee</button> 
