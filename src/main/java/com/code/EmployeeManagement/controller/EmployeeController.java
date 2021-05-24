@@ -81,6 +81,13 @@ public class EmployeeController {
 
         return mv; 
     }
+
+    @GetMapping("/error")
+    public ModelAndView DBAccess(){
+        ModelAndView mv = new ModelAndView("ForbiddenAccess");
+
+        return mv;
+    }
     
     @Bean
     public ViewResolver getViewResolver() {
