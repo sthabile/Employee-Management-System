@@ -1,6 +1,9 @@
 package com.code.EmployeeManagement.controller;
 
+import com.code.EmployeeManagement.model.ContactDetails;
 import com.code.EmployeeManagement.model.Employee;
+import com.code.EmployeeManagement.model.EmploymentDetails;
+import com.code.EmployeeManagement.model.PersonalDetails;
 import com.code.EmployeeManagement.service.EmployeeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,30 +30,40 @@ public class EmployeeController {
     //index page
     @GetMapping(value = "/index")
     public ModelAndView index (){
-        ModelAndView mv = new ModelAndView("index");
-        return mv;  
+        return new ModelAndView("index");
     }
 
     //employeeForm page
     @GetMapping(value = "/employeeForm")
-    public ModelAndView employeeForm (Model model){
+    public ModelAndView employeeForm (Model model)
+    {
         ModelAndView mv = new ModelAndView("employeeForm");
-        Employee employee = new Employee();
-        model.addAttribute("employee", employee);
+
+        model.addAttribute("personalDetails", new PersonalDetails());
+        model.addAttribute("contactDetails",new ContactDetails());
+        model.addAttribute("employmentDetails", new EmploymentDetails());
+        model.addAttribute("employee", new Employee());
+
         return mv;  
     }
 
     @PostMapping("/addEmployee")
     public ModelAndView showEmployeeForm (
-        @ModelAttribute ("employee") Employee employee)
+        @ModelAttribute ("employee") Employee employee,
+        @ModelAttribute ("personalDetails") PersonalDetails personalDetails,
+        @ModelAttribute ("contactDetails") ContactDetails contactDetails,
+        @ModelAttribute ("employmentDetails") EmploymentDetails employmentDetails)
     {
         ModelAndView mv = new ModelAndView("redirect:/employee");
-        
+
+        employee.setPersonalDetails(personalDetails);
+        employee.setContactDetails(contactDetails);
+        employee.setEmploymentDetails(employmentDetails);
+
         employeeServiceImpl.saveEmployee(employee);
 
         return mv;
     }
-
 
     //display list of employees
     @GetMapping("/employee")
