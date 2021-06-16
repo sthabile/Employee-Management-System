@@ -1,52 +1,55 @@
 package com.code.EmployeeManagement.model;
 
+import org.hibernate.annotations.Columns;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.usertype.UserType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-        
+
+@TypeDef(name = "EmploymentDetails", typeClass = EmploymentDetails.class,
+        defaultForType = UserType.class)
+@TypeDef(name = "ContactDetails", typeClass = ContactDetails.class,
+        defaultForType = UserType.class)
+
+@TypeDef(name = "PersonalDetails", typeClass = PersonalDetails.class,
+        defaultForType = UserType.class)
 @Entity
 @Table(name = "employees")
-public class Employee {
+public class Employee
+{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "firstname")         
-    private String name;
+    @Columns(columns = {
+            @Column(name = "firstname"),
+            @Column(name = "surname"),
+            @Column(name = "date_of_birth"),
+            @Column(name = "id_number"),
+            @Column(name = "gender"),
+            @Column(name = "marital_status")
+    })
+    private PersonalDetails personalDetails;
 
-    @Column(name = "surname")
-    private String surname;
+    @Columns(columns = {
+            @Column(name = "unit_number"),
+            @Column(name = "street_number"),
+            @Column (name = "Suburb")
+    })
+    private ContactDetails contactDetails;
 
-    @Column(name = "jobTitle")
-    private String jobTitle;
-
-    public Employee() {
-    }
-
-    public Employee(String name, String surname) {
-        this.name = name;
-        this.surname = surname;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
+    @Columns(columns = {
+            @Column(name = "job_title"),
+            @Column(name = "date_of_employment")
+    })
+    private EmploymentDetails employmentDetails;
 
     public Long getId() {
         return id;
@@ -56,12 +59,27 @@ public class Employee {
         this.id = id;
     }
 
-    public String getJobTitle() {
-        return jobTitle;
+    public ContactDetails getContactDetails() {
+        return contactDetails;
     }
 
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
+    public void setContactDetails(ContactDetails contactDetails) {
+        this.contactDetails = contactDetails;
     }
-    
+
+    public PersonalDetails getPersonalDetails() {
+        return personalDetails;
+    }
+
+    public void setPersonalDetails(PersonalDetails personalDetails) {
+        this.personalDetails = personalDetails;
+    }
+
+    public EmploymentDetails getEmploymentDetails() {
+        return employmentDetails;
+    }
+
+    public void setEmploymentDetails(EmploymentDetails employmentDetails) {
+        this.employmentDetails = employmentDetails;
+    }
 }
