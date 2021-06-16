@@ -5,8 +5,8 @@
     </head>
     <body>
         <center> <h1>  Fill in employee details </h1> </center> 
-        <form th:action= "@{/addEmployee}" th:object="${employee}" method="POST">
-            <fieldset>
+        <form th:action= "@{/addEmployee}"  method="POST">
+            <fieldset th:object="${personalDetails}">
                 <legend>
                     <h1 class="form-legends">Personal Details</h1>
                 </legend>
@@ -18,30 +18,37 @@
                     <input type="text" name= "surname" th:field= "*{surname}" placeholder= "surname">
 
                     <label for= "dob" >Date Of Birth</label>
-                    <input type="text" name= "dob">
+                    <input type="text" name= "dob" th:field="*{dateOfBirth}">
 
                     <label for= "id_number" >ID No.</label>
-                    <input type="text" name= "id_number">
+                    <input type="text" name= "id_number" th:field="*{identityNumber}">
+                </p>
+                <p>
+                    <label for="gender" >Gender</label>
+                    <input type="text" name="gender" th:field="*{gender}">
+
+                    <label for= "maritalStatus">Marital Status</label>
+                    <input type="text" name="maritalStatus" th:field="*{maritalStatus}">
                 </p>
             </fieldset>
-            <fieldset>
+            <fieldset th:object="${contactDetails}">
                 <legend>
                     <h1 class="form-legends">Contact Details</h1>
                 </legend>
-                <label>Physical Address</label> <br>
+                <label> <b> Physical Address<</b></label> <br>
                 <div class="physical_address">
                     <p class="grid-item">
                         <div >
                             <label for= "physical_address-unit" >unit no </label><br><br>
                             <label for= "physical_address-str-num" >street number </label> <br><br>
-                            <label for= "physical_address-surbub" >surbub</label> <br><br>
+                            <label for= "physical_address-suburb" >suburb</label> <br><br>
                             <label for= "physical_address-province" >province</label>
                         </div>
 
                         <div>
-                            <input type="text" name= "physical_address-unit"> <br><br>   
-                            <input type="text" name= "physical_address-str-num"> <br><br>    
-                            <input type="text" name= "physical_address-surbub"> <br><br>            
+                            <input type="text" name= "physical_address-unit" th:field="*{unitNo}"> <br><br>
+                            <input type="text" name= "physical_address-str-num" th:field="*{streetNo}"> <br><br>
+                            <input type="text" name= "physical_address-suburb" th:field="*{suburb}"> <br><br>
                             <input type="text" name= "physical_address-str-province">
                         </div>
                         
@@ -62,22 +69,22 @@
                     </P>
                     </div>
             </fieldset>
-            <fieldset>
+            <fieldset th:object="${employmentDetails}">
                 <legend>
                     <h1 class="form-legends">Employement Details</h1>
                 </legend>
                 <p>
-                    <label for= "doe" >Date Of employement</label>
-                    <input type="text" name= "doe">
-                </p>
-                <p>
                   <label for= "jobTitle" >Position </label>
-                  <input type="text" name= "jobTitle" th:field= "*{jobTitle}"> <br>  
+                  <input type="text" name= "jobTitle" th:field= "*{jobTitle}"> <br>
                 </p>
                 <p>
+                    <label for= "dateOfEmployment" > Date of Employment</label>
+                    <input type="text" name= "dateOfEmployment" th:field= "*{dateOfEmployment}"> <br>
+                </p>
+                <!--<p>
                     <p>Click on the "Choose File" button to upload a detailed CV:</p>
                     <input type="file" id="myFile" name="filename">
-                </p>
+                </p>-->
             </fieldset>
             <p>
                 <button type="submit" name="submit" value= 0 >Add Employee</button> 
