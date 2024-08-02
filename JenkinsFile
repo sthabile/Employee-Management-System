@@ -1,16 +1,18 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
-    agent
-    {
+    agent {
         docker { image 'maven:3.9.0-eclipse-temurin-11' }
     }
-    stages
-    {
-        stage ('build')
-        {
-            steps
-            {
-                sh 'mvn –version'
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code from the Git repository
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/your-repo/your-project.git']]])
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn --version'
             }
         }
     }
